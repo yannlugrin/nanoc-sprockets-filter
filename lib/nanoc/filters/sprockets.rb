@@ -3,7 +3,7 @@ require 'nanoc'
 module Nanoc
   module Filters
     class Sprockets < Nanoc::Filter
-      VERSION = '0.0.1'
+      VERSION = '0.0.2'
 
       type :text
 
