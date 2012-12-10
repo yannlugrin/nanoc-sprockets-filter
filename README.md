@@ -23,7 +23,6 @@ gems for a better integration. Use [uglifier][uglifier] gem to minify
 javascripts. All this dependencies is optionnal and you can use another
 compressor supported by Sprockets.
 
-
 Require dependencies and configure Sprockets helpers to generate assets
 with digest.
 
@@ -31,10 +30,9 @@ with digest.
 require 'sass'
 require 'uglifier'
 require 'sprockets-sass'
-require 'sprockets-helpers'
 require 'nanoc-sprockets-filter'
 
-Sprockets::Helpers.configure do |config|
+Nanoc::Helpers::Sprockets.configure do |config|
   config.environment = Nanoc::Filters::Sprockets.environment
   config.prefix      = '/assets'
   config.digest      = true
@@ -72,15 +70,13 @@ to generate file path.
 
 ```ruby
 route '/assets/*/' do
-  filename = File.basename(item[:filename]).gsub(/^(\w+\.\w+).*/, '\1')
-  Sprockets::Helpers.asset_path(filename)
+  Nanoc::Helpers::Sprockets.asset_path(item)
 end
 ```
 
 ```ruby
 route '/assets/*/', :rep => :gzip do
-  filename = File.basename(item[:filename]).gsub(/^(\w+\.\w+).*/, '\1')
-  Sprockets::Helpers.asset_path(filename) + '.gz'
+  Nanoc::Helpers::Sprockets.asset_path(item) + '.gz'
 end
 ```
 

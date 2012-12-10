@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'sprockets', '>= 2.8.0'
 
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'sprockets-helpers'
 end

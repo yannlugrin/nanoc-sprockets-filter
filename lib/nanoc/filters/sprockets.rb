@@ -1,5 +1,4 @@
 require 'nanoc'
-require 'sprockets'
 
 module Nanoc
   module Filters
@@ -44,6 +43,4 @@ module Nanoc
     end
   end
 end
-
-Nanoc::Filter.register '::Nanoc::Filters::Sprockets', :sprockets
 
