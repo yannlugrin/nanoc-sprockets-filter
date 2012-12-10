@@ -12,7 +12,7 @@ module Nanoc
       module ModuleMethods
 
         def asset_path(item_or_filename, options = {})
-          if item_or_filename.is_a?(Nanoc::Item)
+          if item_or_filename.is_a?(::Nanoc::Item)
             filename = item_or_filename
           else
             filename = item_or_filename
@@ -33,6 +33,20 @@ module Nanoc
       def self.included(base)
         base.send :include, ::Sprockets::Helpers
         base.send :include, ModuleMethods
+      end
+
+      def self.method_missing(method, *args)
+        if ::Sprockets::Helpers.respond_to?(method)
+          if block_given?
+            ::Sprockets::Helpers.send(method, *args) do |*block_args|
+              yield *block_args
+            end
+          else
+            ::Sprockets::Helpers.send(method, *args)
+          end
+        else
+          super
+        end
       end
 
       def method_missing(method, *args)
