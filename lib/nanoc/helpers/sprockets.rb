@@ -13,7 +13,7 @@ module Nanoc
 
         def asset_path(item_or_filename, options = {})
           if item_or_filename.is_a?(::Nanoc::Item)
-            filename = item_or_filename
+            filename = item_or_filename[:filename]
           else
             filename = item_or_filename
           end
