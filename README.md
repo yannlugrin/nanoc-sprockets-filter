@@ -18,9 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-We recommand to install [sprockets-sass][sprockets-sass] and [sprockets-helpers][sprockets-helpers]
-gems for a better integration. Use [uglifier][uglifier] gem to minify
-javascripts. All this dependencies is optionnal and you can use another
+We recommend installing the [sprockets-sass][sprockets-sass] and [sprockets-helpers][sprockets-helpers]
+gems for better integration. Also, use the [uglifier][uglifier] gem to minify
+javascripts. All these dependencies are optional and you can use any other
 compressor supported by Sprockets.
 
 Require dependencies and configure Sprockets helpers to generate assets
@@ -46,7 +46,7 @@ supported by Sprockets.
 ```ruby
 compile %r{/assets/(stylesheets|javascripts)/.+/} do
   filter :sprockets, {
-    :css_compressor => :scss
+    :css_compressor => :scss,
     :js_compressor  => :uglifier
   }
 end
@@ -58,7 +58,7 @@ gzipped version of stylesheets and javascripts files.
 ```ruby
 compile %r{/assets/(stylesheets|javascripts)/.+/}, :rep => :gzip do
   filter :sprockets, {
-    :css_compressor => :scss
+    :css_compressor => :scss,
     :js_compressor  => :uglifier
   }
   filter :gzip
