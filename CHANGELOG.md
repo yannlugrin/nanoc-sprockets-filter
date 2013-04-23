@@ -1,3 +1,10 @@
+## 0.1.1 - 23 April 2013
+
+### Bug fixes
+
+- Fixing missing method on Nanoc::Helpers::Sprockets.configure call.
+  ([@yannlugrin][])
+
 ## 0.1.0 - 23 April 2013
 
 ### Improvements
@@ -12,3 +19,4 @@
 [#2]: https://github.com/yannlugrin/nanoc-sprockets-filter/issues/2
 [@francois2metz]: https://github.com/francois2metz
 [@crazysim]: https://github.com/crazysim
+[@yannlugrin]: https://github.com/yannlugrin

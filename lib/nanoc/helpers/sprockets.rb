@@ -9,6 +9,11 @@ end
 module Nanoc
   module Helpers
     module Sprockets
+
+      def self.configure(*args, &block)
+        ::Sprockets::Helpers.configure(*args, &block)
+      end
+
       module ModuleMethods
 
         def asset_path(item_or_filename, options = {})
