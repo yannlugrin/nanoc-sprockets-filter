@@ -34,36 +34,6 @@ module Nanoc
         base.send :include, ::Sprockets::Helpers
         base.send :include, ModuleMethods
       end
-
-      def self.method_missing(method, *args)
-        if ::Sprockets::Helpers.respond_to?(method)
-          if block_given?
-            ::Sprockets::Helpers.send(method, *args) do |*block_args|
-              yield *block_args
-            end
-          else
-            ::Sprockets::Helpers.send(method, *args)
-          end
-        else
-          super
-        end
-      end
-
-      def method_missing(method, *args)
-        if ::Sprockets::Helpers.respond_to?(method)
-          if block_given?
-            ::Sprockets::Helpers.send(method, *args) do |*block_args|
-              yield *block_args
-            end
-          else
-            ::Sprockets::Helpers.send(method, *args)
-          end
-        else
-          super
-        end
-      end
-
     end
   end
 end
-
