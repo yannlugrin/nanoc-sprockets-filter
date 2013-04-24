@@ -42,6 +42,8 @@ end
 Add compile rule for stylesheets and javascripts, `css_compressor`and
 `js_compressor` is optionnal and value can be replaced by any compressor
 supported by Sprockets.
+Add route rule for all assets and use [sprockets-helpers][sprockets-helpers]
+to generate file path.
 
 ```ruby
 compile %r{/assets/(stylesheets|javascripts)/.+/} do
@@ -50,32 +52,30 @@ compile %r{/assets/(stylesheets|javascripts)/.+/} do
     :js_compressor  => :uglifier
   }
 end
+
+route '/assets/*/' do
+  Nanoc::Helpers::Sprockets.asset_path(item)
+end
 ```
 
 You can use [nanoc-gzip-filter][nanoc-gzip-filter] to create a
 gzipped version of stylesheets and javascripts files.
 
 ```ruby
-compile %r{/assets/(stylesheets|javascripts)/.+/}, :rep => :gzip do
+compile %r{/assets/(stylesheets|javascripts)/.+/} do
   filter :sprockets, {
     :css_compressor => :scss,
     :js_compressor  => :uglifier
   }
+  snapshot :text
   filter :gzip
 end
-```
 
-Add route rule for all assets and use [sprockets-helpers][sprockets-helpers]
-to generate file path.
-
-```ruby
-route '/assets/*/' do
+route '/assets/*/', :snapshot => :text do
   Nanoc::Helpers::Sprockets.asset_path(item)
 end
-```
 
-```ruby
-route '/assets/*/', :rep => :gzip do
+route '/assets/*/' do
   Nanoc::Helpers::Sprockets.asset_path(item) + '.gz'
 end
 ```
